@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  /* margin: 0;
+    padding: 0; */
+  box-sizing: border-box;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vcenter {
+  display: flex;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: #5cb85c;
+}
+
+a:hover {
+  /* text-decoration: underline; */
+  color: #5cb85c;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
