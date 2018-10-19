@@ -27,4 +27,20 @@ export class FeedService {
     const headers = this.setAuthoriztionHeaders();
     return this.httpClient.get(`${ this.apiUrl }/articles/feed/?limit=10`, {headers: headers});
   }
+
+  getAuthorArticles(username) {
+    if (this.authService.isLoggedIn()) {
+      const headers = this.setAuthoriztionHeaders();
+      return this.httpClient.get(`${ this.apiUrl }/articles/?author=${username}&limit=10`, {headers: headers});
+    }
+    return this.httpClient.get(`${ this.apiUrl }/articles/?author=${username}&limit=10`);
+  }
+
+  getAuthorFavArticles(username) {
+    if (this.authService.isLoggedIn()) {
+      const headers = this.setAuthoriztionHeaders();
+      return this.httpClient.get(`${ this.apiUrl }/articles/?favorited=${username}&limit=10`, {headers: headers});
+    }
+    return this.httpClient.get(`${ this.apiUrl }/articles/?favorited=${username}&limit=10`);
+  }
 }

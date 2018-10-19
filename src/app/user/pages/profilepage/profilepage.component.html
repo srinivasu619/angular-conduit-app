@@ -2,10 +2,10 @@
   <app-profile-card [username]="username"></app-profile-card>
   <div class="authorArticles">
     <ul class="articleMenu vcenter">
-      <li>
+      <li [routerLinkActive]="['active']">
         <a [routerLink]="['posts']">My Posts</a>
       </li>
-      <li>
+      <li [routerLinkActive]="['active']">
         <a [routerLink]="['favourites']">Favourite Articles</a>
       </li>
     </ul>
