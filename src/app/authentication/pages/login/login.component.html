@@ -1,6 +1,6 @@
 <div class="formContainer">
   <h2>Login</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="handleLogin(loginForm.value)">
+  <form [formGroup]="loginForm" (ngSubmit)="handleForm(loginForm.value)">
     <label for="">E-MAIL</label>
     <input type="email" formControlName="email">
     <div *ngIf="form.email.invalid && (form.email.dirty || form.email.touched)" [ngClass]="'alert alert-danger'">

@@ -15,6 +15,22 @@ export class AuthService {
     return this.httpClient.post(`${ this.apiurl }/users`, userCredentials);
   }
 
+  setUser(userData): void {
+    const user = {
+      username: userData.username,
+      token: `Token ${userData.token}`
+    };
+
+    window.localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  removeUser() {
+    window.localStorage.removeItem('user');
+  }
+  getUserName() {
+    return JSON.parse(localStorage.getItem('user')).username;
+  }
+
   isLoggedIn(): boolean {
     const currentUser = JSON.parse(window.localStorage.getItem('user'));
     if (currentUser && currentUser.token) {

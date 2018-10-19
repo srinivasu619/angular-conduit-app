@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -9,7 +11,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class SignupComponent implements OnInit {
 
   signUpForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.signUpForm = this.formBuilder.group({
       'username': [null, Validators.compose([Validators.required, Validators.minLength(5)])],
       'email': [null, Validators.compose([Validators.required, Validators.email])],
@@ -22,4 +24,14 @@ export class SignupComponent implements OnInit {
 
   get form() { return this.signUpForm.controls; }
 
+  handleForm(userCredentianls) {
+    this.authService.signUpUser({ user: userCredentianls }).subscribe(
+      (data: any) => {
+        this.authService.setUser(data.user);
+        this.router.navigate(['/home']);
+      },
+      err => { console.log(err.error.errors); },
+      () => { console.log('COMPLETD LOGIN'); }
+    );
+  }
 }

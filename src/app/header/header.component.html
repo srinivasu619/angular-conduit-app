@@ -4,8 +4,7 @@
     <h1>conduit</h1>
   </div>
   <div *ngIf="!isLoggedIn; else loggedOutMenu" class="menu vcenter">
-    <!-- <a [routerLink]="['home']"> -->
-    <a href="#">
+    <a [routerLink]="['home']">
       <div class="menuItem">
         Home
       </div>
@@ -23,8 +22,7 @@
   </div>
   <ng-template #loggedOutMenu>
     <div class="menu vcenter">
-      <!-- <a [routerLink]="['home']"> -->
-      <a href="">
+      <a [routerLink]="['home']">
         <div class="menuItem">
           Home
         </div>
