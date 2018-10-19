@@ -3,7 +3,7 @@
     <div class="vcenter">
       <img [src]="article.author.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'" alt="">
       <div class="info">
-        <a href="#">
+        <a [routerLink]="['/profile',article.author.username]">
           <h4>{{ article.author.username }}</h4>
         </a>
         <h5>{{ article.createdAt | date }}</h5>
@@ -19,5 +19,6 @@
   </div>
   <div class="articleExtra vcenter">
     <button>READ</button>
+    <app-article-tag-list *ngIf=" article.tagList.length != 0 " [articleTags]="article.tagList | slice:0:3"></app-article-tag-list>
   </div>
 </div>
