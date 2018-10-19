@@ -28,10 +28,10 @@ export class SignupComponent implements OnInit {
     this.authService.signUpUser({ user: userCredentianls }).subscribe(
       (data: any) => {
         this.authService.setUser(data.user);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home/yourfeed']);
       },
       err => { console.log(err.error.errors); },
-      () => { console.log('COMPLETD LOGIN'); }
+      () => { console.log('COMPLETD SIGNUP'); }
     );
   }
 }

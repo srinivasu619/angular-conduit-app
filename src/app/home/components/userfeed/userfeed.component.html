@@ -1,3 +1,13 @@
-<p>
-  userfeed works!
-</p>
+<div *ngIf="isLoading;else feed">
+  Loading Articles ...
+</div>
+
+<ng-template #feed>
+  <div *ngIf="userArticles.length == 0;else articles">
+    Nothing Here Yet ...
+  </div>
+</ng-template>
+
+<ng-template #articles>
+    <app-article-list [articles]="userArticles"></app-article-list>
+</ng-template>

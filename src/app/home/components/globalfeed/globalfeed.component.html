@@ -1,6 +1,13 @@
 <div *ngIf="isLoading;else feed">
-    Loading Articles ...
+  Loading Articles ...
 </div>
+
 <ng-template #feed>
-    <app-article-list [articles]="globalArticles"></app-article-list>
+  <div *ngIf="globalArticles.length == 0;else articles">
+    Nothing Here Yet ...
+  </div>
+</ng-template>
+
+<ng-template #articles>
+  <app-article-list [articles]="globalArticles"></app-article-list>
 </ng-template>

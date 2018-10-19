@@ -16,6 +16,9 @@
   margin: 0 auto;
   padding: 20px;
 }
+.container > .feedContainer{
+  width: 60%;
+}
 
 .feedMenu {
   list-style: none;

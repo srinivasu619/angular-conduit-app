@@ -1,14 +1,19 @@
 <main>
-    <div *ngIf="!isLoggedIn" class="banner center">
-        <h1 style="margin-bottom: 12px;">conduit</h1>
-        <h4>An angular based Blog App</h4>
+  <div *ngIf="!isLoggedIn" class="banner center">
+    <h1 style="margin-bottom: 12px;">conduit</h1>
+    <h4>An angular based Blog App</h4>
+  </div>
+  <div class="container vcenter">
+    <div class="feedContainer">
+      <ul class="feedMenu vcenter">
+        <li *ngIf="isLoggedIn" [routerLinkActive]="['active']">
+          <a [routerLink]="['yourfeed']">Your Feed</a>
+        </li>
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['globalfeed']">Global Feed</a>
+        </li>
+      </ul>
+      <router-outlet></router-outlet>
     </div>
-    <div class="container">
-        <ul class="feedMenu vcenter">
-            <li [routerLinkActive]="['active']">
-                <a [routerLink]="['globalfeed']">Global Feed</a>
-            </li>
-        </ul>
-        <router-outlet></router-outlet>
-    </div>
+  </div>
 </main>
