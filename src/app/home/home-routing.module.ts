@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomepageComponent } from './pages/homepage/homepage.component';
+import { GlobalfeedComponent } from './components/globalfeed/globalfeed.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,18 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomepageComponent
+    component: HomepageComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'globalfeed',
+        pathMatch: 'full'
+      },
+      {
+        path: 'globalfeed',
+        component: GlobalfeedComponent
+      }
+    ]
   }
 ];
 

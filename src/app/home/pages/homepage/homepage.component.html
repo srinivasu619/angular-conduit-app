@@ -1,1 +1,14 @@
-<h1>Home Page</h1>
+<main>
+    <div *ngIf="!isLoggedIn" class="banner center">
+        <h1 style="margin-bottom: 12px;">conduit</h1>
+        <h4>An angular based Blog App</h4>
+    </div>
+    <div class="container">
+        <ul class="feedMenu vcenter">
+            <li [routerLinkActive]="['active']">
+                <a [routerLink]="['globalfeed']">Global Feed</a>
+            </li>
+        </ul>
+        <router-outlet></router-outlet>
+    </div>
+</main>

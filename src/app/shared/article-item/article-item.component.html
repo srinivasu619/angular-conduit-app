@@ -1,0 +1,23 @@
+<div class="articleItem">
+  <div class="articleHeader">
+    <div class="vcenter">
+      <img [src]="article.author.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'" alt="">
+      <div class="info">
+        <a href="#">
+          <h4>{{ article.author.username }}</h4>
+        </a>
+        <h5>{{ article.createdAt | date }}</h5>
+      </div>
+    </div>
+    <div class="vcenter fav">
+      <i class="fas fa-heart"></i> {{ article.favoritesCount }}
+    </div>
+  </div>
+  <div class="articleContent">
+    <h2>{{ article.title }}</h2>
+    <p>{{ article.description }}</p>
+  </div>
+  <div class="articleExtra vcenter">
+    <button>READ</button>
+  </div>
+</div>

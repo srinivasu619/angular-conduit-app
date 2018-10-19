@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.banner {
+  height: 250px;
+  background: #5cb85c;
+  color: white;
+  flex-direction: column;
+  letter-spacing: 2px;
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.feedMenu {
+  list-style: none;
+  margin-bottom: 12px;
+}
+
+.feedMenu>li {
+  margin-right: 12px;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-weight: bolder;
+}
+
+.active {
+  background: #ecf0f1
+}

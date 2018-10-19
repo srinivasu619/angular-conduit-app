@@ -11,7 +11,7 @@ import { HomeModule } from './home/home.module';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

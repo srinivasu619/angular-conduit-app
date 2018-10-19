@@ -1,0 +1,6 @@
+<div *ngIf="isLoading;else feed">
+    Loading Articles ...
+</div>
+<ng-template #feed>
+    <app-article-list [articles]="globalArticles"></app-article-list>
+</ng-template>

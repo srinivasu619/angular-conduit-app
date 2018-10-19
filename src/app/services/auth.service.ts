@@ -27,8 +27,13 @@ export class AuthService {
   removeUser() {
     window.localStorage.removeItem('user');
   }
+
   getUserName() {
     return JSON.parse(localStorage.getItem('user')).username;
+  }
+
+  getUserToken() {
+    return JSON.parse(localStorage.getItem('user')).token;
   }
 
   isLoggedIn(): boolean {
