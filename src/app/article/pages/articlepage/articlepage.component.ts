@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from '../../../services/article.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-articlepage',
@@ -12,7 +13,10 @@ export class ArticlepageComponent implements OnInit {
   articleSlug: string;
   article;
   isLoading: boolean;
-  constructor(private activatedRoute: ActivatedRoute, private articleService: ArticleService) {
+  constructor(private activatedRoute: ActivatedRoute,
+              private articleService: ArticleService,
+              private authService: AuthService,
+              private router: Router) {
     this.articleSlug = this.activatedRoute.snapshot.params.slug;
   }
 
@@ -25,7 +29,6 @@ export class ArticlepageComponent implements OnInit {
     this.articleService.getArticleBySlug(this.articleSlug).subscribe(
       (data: any) => {
         this.article = data.article;
-        console.log(this.article);
       },
       (err) => {
         console.log(err);
@@ -37,4 +40,15 @@ export class ArticlepageComponent implements OnInit {
     );
   }
 
+  get isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+
+  get currentUser(): string {
+    return this.authService.getUserName();
+  }
+
+  editArticle() {
+    this.router.navigate(['editor', this.article.slug]);
+  }
 }

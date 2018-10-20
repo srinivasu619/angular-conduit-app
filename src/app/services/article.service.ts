@@ -29,4 +29,9 @@ export class ArticleService {
     const headers = this.setAuthoriztionHeaders();
     return this.httpClient.post(`${ this.apiUrl }/articles`, article, {headers: headers});
   }
+
+  editArticle(article, articleSlug) {
+    const headers = this.setAuthoriztionHeaders();
+    return this.httpClient.put(`${ this.apiUrl }/articles/${ articleSlug }`, article, {headers: headers});
+  }
 }

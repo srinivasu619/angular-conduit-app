@@ -4,15 +4,31 @@
       <div class="articleInfo">
         <h1>{{ article.title}}</h1>
         <h4>Published on: {{ article.createdAt | date: 'longDate'}}</h4>
+        <div *ngIf="isLoggedIn && currentUser === article.author.username; else other">
+          <button (click)="editArticle(article.slug)">EDIT</button>
+          <button (click)="deleteArticle(article.slug)">DELETE</button>
+        </div>
       </div>
     </div>
   </div>
   <div class="container">
     <div class="articleContent">
-        <markdown ngPreserveWhitespaces class="markdown">
-            {{ article.body }}
-        </markdown>
+      <markdown ngPreserveWhitespaces class="markdown">
+        {{ article.body }}
+      </markdown>
     </div>
     <app-article-tag-list *ngIf=" article.tagList.length != 0 " [articleTags]="article.tagList"></app-article-tag-list>
   </div>
+  <ng-template #other>
+    <div>
+      <button *ngIf="!article.favorited" class="greenBack">
+        <i class="fas fa-heart"></i> Favourite({{ article.favoritesCount }})
+      </button>
+      <button *ngIf="article.favorited" class="grayBack">
+        <i class="fas fa-heart"></i> Unfavourite({{ article.favoritesCount }})
+      </button>
+      <button *ngIf="!article.author.following" class="greenBack">Follow</button>
+      <button *ngIf="article.author.following" class="grayBack">Unfollow</button>
+    </div>
+  </ng-template>
 </main>

@@ -8,6 +8,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { EditorComponent } from './components/editor/editor.component';
 import { NewArticleComponent } from './pages/new-article/new-article.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditArticleComponent } from './pages/edit-article/edit-article.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
   ],
-  declarations: [EditorComponent, ArticlepageComponent, NewArticleComponent],
+  declarations: [EditorComponent, ArticlepageComponent, NewArticleComponent, EditArticleComponent],
 })
 export class ArticleModule { }

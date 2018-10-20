@@ -32,6 +32,10 @@
   justify-content: space-around;
   height: inherit;
 }
+.articleInfo > h1,h4,div{
+  margin: 0;
+  padding: 0;
+}
 
 button {
   color: white;

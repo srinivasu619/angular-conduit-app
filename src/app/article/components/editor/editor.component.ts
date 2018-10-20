@@ -11,13 +11,18 @@ import { Router } from '@angular/router';
 export class EditorComponent implements OnInit {
 
   @Input() article?: any;
+  editFlag = false;
   title: string;
   description: string;
   content: string;
   tags: string;
   articleEditorForm: FormGroup;
   constructor(private formbuilder: FormBuilder, private articleService: ArticleService, private router: Router) {
+   }
+
+  ngOnInit() {
     if (this.article !== undefined) {
+      this.editFlag = true;
       this.title = this.article.title;
       this.description = this.article.description;
       this.content = this.article.body;
@@ -29,9 +34,6 @@ export class EditorComponent implements OnInit {
       'content': [this.content, Validators.required],
       'tags': [this.tags]
     });
-   }
-
-  ngOnInit() {
   }
 
   get form() { return this.articleEditorForm.controls; }
@@ -43,7 +45,11 @@ export class EditorComponent implements OnInit {
       body: form.content,
       tagList: form.tags.split(',')
     };
-    this.postAnArticle(formValue);
+    if (this.editFlag) {
+      this.editAnArticle(formValue, this.article.slug);
+    } else {
+      this.postAnArticle(formValue);
+    }
   }
 
   postAnArticle(article) {
@@ -56,6 +62,20 @@ export class EditorComponent implements OnInit {
       },
       () => {
         console.log('POSTED COMPLETE');
+      }
+    );
+  }
+
+  editAnArticle(article, articleSlug) {
+    this.articleService.editArticle(article, articleSlug).subscribe(
+      (data: any) => {
+        this.router.navigate(['/article', data.article.slug]);
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        console.log('EDIT COMPLETED');
       }
     );
   }
