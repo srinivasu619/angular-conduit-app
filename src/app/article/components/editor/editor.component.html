@@ -1,0 +1,26 @@
+<form [formGroup]="articleEditorForm" (ngSubmit)="handleForm(articleEditorForm.value)">
+  <label for="">Article Title</label>
+  <input type="text" formControlName="title">
+  <div *ngIf="form.title.invalid && (form.title.dirty || form.title.touched)" [ngClass]="'alert alert-danger'">
+    <div *ngIf="form.title.errors.required">
+      Article Title is required.
+    </div>
+  </div>
+  <label for="">Article Description</label>
+  <input type="text" formControlName="description">
+  <div *ngIf="form.description.invalid && (form.description.dirty || form.description.touched)" [ngClass]="'alert alert-danger'">
+    <div *ngIf="form.description.errors.required">
+      Article Description is required.
+    </div>
+  </div>
+  <label for="">Article Content</label>
+  <textarea type="text" formControlName="content" cols="30"></textarea>
+  <div *ngIf="form.content.invalid && (form.content.dirty || form.content.touched)" [ngClass]="'alert alert-danger'">
+    <div *ngIf="form.content.errors.required">
+      Article Content is required.
+    </div>
+  </div>
+  <label for="">Article Tags</label>
+  <input type="text" formControlName="tags">
+  <input type="submit" value="Publish Article" [disabled]="!articleEditorForm.valid">
+</form>

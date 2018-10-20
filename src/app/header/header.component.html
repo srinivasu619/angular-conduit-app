@@ -3,7 +3,7 @@
     <div class="logo center">C</div>
     <h1>conduit</h1>
   </div>
-  <div *ngIf="!isLoggedIn; else loggedOutMenu" class="menu vcenter">
+  <div *ngIf="!isLoggedIn; else loggedInMenu" class="menu vcenter">
     <a [routerLink]="['home']">
       <div class="menuItem">
         Home
@@ -20,11 +20,16 @@
       </div>
     </a>
   </div>
-  <ng-template #loggedOutMenu>
+  <ng-template #loggedInMenu>
     <div class="menu vcenter">
-      <a [routerLink]="['home']">
+      <a [routerLink]="['home/yourfeed']">
         <div class="menuItem">
           Home
+        </div>
+      </a>
+      <a [routerLink]="['editor']">
+        <div class="menuItem">
+          New Article
         </div>
       </a>
       <a [routerLink]="['/profile',currentUser]">

@@ -24,4 +24,9 @@ export class ArticleService {
     }
     return this.httpClient.get(`${ this.apiUrl }/articles/${ slug }`);
   }
+
+  postNewArticle(article) {
+    const headers = this.setAuthoriztionHeaders();
+    return this.httpClient.post(`${ this.apiUrl }/articles`, article, {headers: headers});
+  }
 }
