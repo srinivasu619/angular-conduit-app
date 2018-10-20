@@ -18,6 +18,6 @@
 </ng-template>
 
 <ng-template #userActions>
-  <button *ngIf="!author.following" class="greenBack">Follow</button>
-  <button *ngIf="author.following" class="grayBack">Unfollow</button>
+  <button *ngIf="!author.following" class="greenBack" (click) = "follow()">Follow</button>
+  <button *ngIf="author.following" class="grayBack" (click) = "unfollow()">Unfollow</button>
 </ng-template>

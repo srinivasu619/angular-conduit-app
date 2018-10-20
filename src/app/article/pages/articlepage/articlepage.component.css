@@ -1,5 +1,5 @@
 .articleInfoContainer {
-  height: 200px;
+  height: 300px;
   padding: 20px 0;
   background: #ecf0f1;
 }
@@ -30,13 +30,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: inherit;
 }
-.articleInfo > h1,h4,div{
+.articleInfo > h1,h4,h5,div{
+  margin: 0;
+  padding: 8px 0;
+}
+.author {
+  width: 500px; 
+  justify-content: space-between;
+}
+.author > .authorInfo > img{
+  height: 30px;
+  border-radius: 50%;
+  margin-right:12px; 
+}
+.author > .authorInfo > a > h4{
   margin: 0;
   padding: 0;
 }
-
 button {
   color: white;
   border-radius: 5px;

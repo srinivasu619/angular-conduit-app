@@ -28,6 +28,10 @@
   color: #5cb85c;
 }
 
+.articleContent >p {
+  padding: 12px 0;
+}
+
 .articleExtra {
   justify-content: space-between;
 }
@@ -54,4 +58,9 @@
   float: right;
   font-size: 12px;
   cursor: pointer;
+}
+
+.fav-done{
+  background: #5cb85c;
+  color: white;
 }

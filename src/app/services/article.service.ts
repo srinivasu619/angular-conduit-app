@@ -34,4 +34,19 @@ export class ArticleService {
     const headers = this.setAuthoriztionHeaders();
     return this.httpClient.put(`${ this.apiUrl }/articles/${ articleSlug }`, article, {headers: headers});
   }
+
+  deleteArticle(articleSlug) {
+    const headers = this.setAuthoriztionHeaders();
+    return this.httpClient.delete(`${ this.apiUrl }/articles/${ articleSlug }`, {headers: headers});
+  }
+
+  favoriteAnArticle(articleSlug) {
+      const headers = this.setAuthoriztionHeaders();
+      return this.httpClient.post(`${ this.apiUrl }/articles/${articleSlug}/favorite`, {} , {headers: headers});
+  }
+
+  unfavoriteAnArticle(articleSlug) {
+      const headers = this.setAuthoriztionHeaders();
+      return this.httpClient.delete(`${ this.apiUrl }/articles/${articleSlug}/favorite`, {headers: headers});
+  }
 }

@@ -2,11 +2,20 @@
   <div class="articleInfoContainer center">
     <div class="metaData vcenter">
       <div class="articleInfo">
-        <h1>{{ article.title}}</h1>
-        <h4>Published on: {{ article.createdAt | date: 'longDate'}}</h4>
-        <div *ngIf="isLoggedIn && currentUser === article.author.username; else other">
-          <button (click)="editArticle(article.slug)">EDIT</button>
-          <button (click)="deleteArticle(article.slug)">DELETE</button>
+        <h1 style="color: #5cb85c">{{ article.title }}</h1>
+        <h4>{{ article.description }}</h4>
+        <h4>{{ article.createdAt | date: 'longDate'}}</h4>
+        <div class="vcenter author">
+          <div class="authorInfo vcenter">
+            <img [src]="article.author.image" alt="">
+            <a [routerLink]="['/profile',article.author.username]">
+              <h4>{{ article.author.username }}</h4>
+            </a>
+          </div>
+          <div *ngIf="isLoggedIn && currentUser === article.author.username; else other" class="actions">
+            <button (click)="editArticle(article.slug)" class="greenBack">EDIT</button>
+            <button (click)="deleteArticle(article.slug)" class="redBack">DELETE</button>
+          </div>
         </div>
       </div>
     </div>
@@ -18,17 +27,29 @@
       </markdown>
     </div>
     <app-article-tag-list *ngIf=" article.tagList.length != 0 " [articleTags]="article.tagList"></app-article-tag-list>
+    <div class="vcenter author">
+      <div class="authorInfo vcenter">
+        <img [src]="article.author.image" alt="">
+        <a [routerLink]="['/profile',article.author.username]">
+          <h4>{{ article.author.username }}</h4>
+        </a>
+      </div>
+      <div *ngIf="isLoggedIn && currentUser === article.author.username; else other" class="actions">
+        <button (click)="editArticle(article.slug)"  class="greenBack" >EDIT</button>
+        <button (click)="deleteArticle(article.slug)" class="redBack" >DELETE</button>
+      </div>
+    </div>
   </div>
   <ng-template #other>
-    <div>
-      <button *ngIf="!article.favorited" class="greenBack">
+    <div class="actions">
+      <button *ngIf="!article.favorited" class="greenBack" (click) = "favourite()">
         <i class="fas fa-heart"></i> Favourite({{ article.favoritesCount }})
       </button>
-      <button *ngIf="article.favorited" class="grayBack">
+      <button *ngIf="article.favorited" class="grayBack" (click) = "unfavorite()">
         <i class="fas fa-heart"></i> Unfavourite({{ article.favoritesCount }})
       </button>
-      <button *ngIf="!article.author.following" class="greenBack">Follow</button>
-      <button *ngIf="article.author.following" class="grayBack">Unfollow</button>
+      <button *ngIf="!article.author.following" class="greenBack" (click) = "follow()">Follow</button>
+      <button *ngIf="article.author.following" class="grayBack" (click) = "unfollow()">Unfollow</button>
     </div>
   </ng-template>
 </main>
