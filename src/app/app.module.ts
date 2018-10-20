@@ -8,6 +8,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './home/home.module';
 import { UserModule } from './user/user.module';
+import { ArticleModule } from './article/article.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { UserModule } from './user/user.module';
     HomeModule,
     AuthenticationModule,
     UserModule,
+    ArticleModule,
     HttpClientModule
   ],
   providers: [],

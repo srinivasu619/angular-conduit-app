@@ -1,0 +1,16 @@
+<main *ngIf="!isLoading">
+  <div class="articleInfoContainer center">
+    <div class="metaData vcenter">
+      <div class="articleInfo">
+        <h1>{{ article.title}}</h1>
+        <h4>Published on: {{ article.createdAt | date: 'longDate'}}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="articleContent">
+        {{ article.body }}
+    </div>
+    <app-article-tag-list *ngIf=" article.tagList.length != 0 " [articleTags]="article.tagList"></app-article-tag-list>
+  </div>
+</main>

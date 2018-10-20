@@ -18,7 +18,7 @@
     <p>{{ article.description }}</p>
   </div>
   <div class="articleExtra vcenter">
-    <button>READ</button>
+    <button (click)="readArticle(article.slug)">READ</button>
     <app-article-tag-list *ngIf=" article.tagList.length != 0 " [articleTags]="article.tagList | slice:0:3"></app-article-tag-list>
   </div>
 </div>
