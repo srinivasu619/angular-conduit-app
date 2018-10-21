@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ArticlepageComponent } from './pages/articlepage/articlepage.component';
 import { NewArticleComponent } from './pages/new-article/new-article.component';
 import { EditArticleComponent } from './pages/edit-article/edit-article.component';
+import { AuthGuard } from '../gaurds/auth.guard';
 
 const routes: Routes = [
   {
@@ -11,11 +12,13 @@ const routes: Routes = [
   },
   {
     path: 'editor',
-    component: NewArticleComponent
+    component: NewArticleComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'editor/:slug',
-    component: EditArticleComponent
+    component: EditArticleComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
