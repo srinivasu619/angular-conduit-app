@@ -6,6 +6,7 @@
   width: 300px;
   height: 450px;
   flex-direction: column;
+  justify-content: space-around;
   padding: 20px;
   box-shadow: 0 0 10px #2323;
 }
@@ -16,7 +17,7 @@
 }
 
 .authorImg>img {
-  height: 100px;
+  height: 150px;
   border-radius: 50%;
 }
 

@@ -27,6 +27,7 @@
       </markdown>
     </div>
     <app-article-tag-list *ngIf=" article.tagList.length != 0 " [articleTags]="article.tagList"></app-article-tag-list>
+    <hr>
     <div class="vcenter author">
       <div class="authorInfo vcenter">
         <img [src]="article.author.image" alt="">
@@ -39,6 +40,7 @@
         <button (click)="deleteArticle(article.slug)" class="redBack" >DELETE</button>
       </div>
     </div>
+    <app-comments-container [slug] = "article.slug"></app-comments-container>
   </div>
   <ng-template #other>
     <div class="actions">
