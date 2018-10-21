@@ -12,6 +12,7 @@ export class AuthorFavPostsComponent implements OnInit {
   author: string;
   authorFavPosts = [];
   isLoading: boolean;
+  noOfArticles;
 
   constructor(private feedService: FeedService, private activatedRoute: ActivatedRoute) {
   }
@@ -20,15 +21,17 @@ export class AuthorFavPostsComponent implements OnInit {
     this.activatedRoute.parent.paramMap.subscribe(
       (params) => {
         this.author = params.get('username');
-        this.getAuthorFavPosts();
+        this.getAuthorFavPosts(0);
       }
     );
   }
 
-  getAuthorFavPosts() {
-    this.feedService.getAuthorFavArticles(this.author).subscribe(
+  getAuthorFavPosts(offset) {
+    this.isLoading = true;
+    this.feedService.getAuthorFavArticles(this.author, offset).subscribe(
       (data: any) => {
         this.authorFavPosts = data.articles;
+        this.noOfArticles = data.articlesCount;
       },
       (err) => {
         console.log(err);
@@ -40,4 +43,8 @@ export class AuthorFavPostsComponent implements OnInit {
     );
   }
 
+  selected(pageNumber) {
+    // console.log('GLOBAL FEED: ' + pageNumber);
+    this.getAuthorFavPosts(pageNumber);
+  }
 }

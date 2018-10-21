@@ -10,18 +10,20 @@ export class GlobalfeedComponent implements OnInit {
 
   globalArticles = [];
   isLoading: boolean;
+  noOfArticles;
 
   constructor(private feedService: FeedService) { }
 
   ngOnInit() {
-    this.getGlobalArticles();
+    this.getGlobalArticles(0);
   }
 
-  getGlobalArticles() {
+  getGlobalArticles(offset) {
     this.isLoading = true;
-    this.feedService.getGlobalFeed().subscribe(
+    this.feedService.getGlobalFeed(offset).subscribe(
       (data: any) => {
         this.globalArticles = data.articles;
+        this.noOfArticles = data.articlesCount;
       },
       (err) => {
         console.log(err);
@@ -31,6 +33,11 @@ export class GlobalfeedComponent implements OnInit {
         console.log('GLOBAL FEED FETCHED');
       }
     );
+  }
+
+  selected(pageNumber) {
+    // console.log('GLOBAL FEED: ' + pageNumber);
+    this.getGlobalArticles(pageNumber);
   }
 
 }

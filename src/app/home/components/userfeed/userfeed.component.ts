@@ -10,18 +10,19 @@ export class UserfeedComponent implements OnInit {
 
   userArticles = [];
   isLoading: boolean;
-
+  noOfArticles;
   constructor(private feedService: FeedService) { }
 
   ngOnInit() {
-    this.getUserArticles();
+    this.getUserArticles(0);
   }
 
-  getUserArticles() {
+  getUserArticles(offset) {
     this.isLoading = true;
-    this.feedService.getUserFeed().subscribe(
+    this.feedService.getUserFeed(offset).subscribe(
       (data: any) => {
         this.userArticles = data.articles;
+        this.noOfArticles = data.articlesCount;
       },
       (err) => {
         console.log(err);
@@ -31,5 +32,10 @@ export class UserfeedComponent implements OnInit {
         console.log('USER ARTICLES FETCH COMPLETED.');
       }
     );
+  }
+
+  selected(pageNumber) {
+    // console.log('GLOBAL FEED: ' + pageNumber);
+    this.getUserArticles(pageNumber);
   }
 }

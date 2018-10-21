@@ -15,41 +15,41 @@ export class FeedService {
     return headers;
   }
 
-  getGlobalFeed() {
+  getGlobalFeed(offset) {
     if (this.authService.isLoggedIn()) {
       const headers = this.setAuthoriztionHeaders();
-      return this.httpClient.get(`${ this.apiUrl }/articles/?limit=10`, {headers: headers});
+      return this.httpClient.get(`${ this.apiUrl }/articles/?limit=10&offset=${offset}`, {headers: headers});
     }
-    return this.httpClient.get(`${ this.apiUrl }/articles/?limit=10`);
+    return this.httpClient.get(`${ this.apiUrl }/articles/?limit=10&offset=${offset}`);
   }
 
-  getUserFeed() {
+  getUserFeed(offset) {
     const headers = this.setAuthoriztionHeaders();
-    return this.httpClient.get(`${ this.apiUrl }/articles/feed/?limit=10`, {headers: headers});
+    return this.httpClient.get(`${ this.apiUrl }/articles/feed/?limit=10&offset=${offset}`, {headers: headers});
   }
 
-  getAuthorArticles(username) {
+  getAuthorArticles(username, offset) {
     if (this.authService.isLoggedIn()) {
       const headers = this.setAuthoriztionHeaders();
-      return this.httpClient.get(`${ this.apiUrl }/articles/?author=${username}&limit=10`, {headers: headers});
+      return this.httpClient.get(`${ this.apiUrl }/articles/?author=${username}&limit=10&offset=${offset}`, {headers: headers});
     }
-    return this.httpClient.get(`${ this.apiUrl }/articles/?author=${username}&limit=10`);
+    return this.httpClient.get(`${ this.apiUrl }/articles/?author=${username}&limit=10&offset=${offset}`);
   }
 
-  getAuthorFavArticles(username) {
+  getAuthorFavArticles(username, offset) {
     if (this.authService.isLoggedIn()) {
       const headers = this.setAuthoriztionHeaders();
-      return this.httpClient.get(`${ this.apiUrl }/articles/?favorited=${username}&limit=10`, {headers: headers});
+      return this.httpClient.get(`${ this.apiUrl }/articles/?favorited=${username}&limit=10&offset=${offset}`, {headers: headers});
     }
-    return this.httpClient.get(`${ this.apiUrl }/articles/?favorited=${username}&limit=10`);
+    return this.httpClient.get(`${ this.apiUrl }/articles/?favorited=${username}&limit=10&offset=${offset}`);
   }
 
-  getTagFeed(tag) {
+  getTagFeed(tag, offset) {
     if (this.authService.isLoggedIn()) {
       const headers = this.setAuthoriztionHeaders();
-      return this.httpClient.get(`${ this.apiUrl }/articles/?tag=${ tag }&limit=10`, {headers: headers});
+      return this.httpClient.get(`${ this.apiUrl }/articles/?tag=${ tag }&limit=10&offset=${offset}`, {headers: headers});
     }
-    return this.httpClient.get(`${ this.apiUrl }/articles/?tag=${ tag }&limit=10`);
+    return this.httpClient.get(`${ this.apiUrl }/articles/?tag=${ tag }&limit=10&offset=${offset}`);
   }
 
   getFamousTags() {

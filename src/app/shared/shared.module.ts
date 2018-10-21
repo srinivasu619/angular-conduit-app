@@ -5,6 +5,7 @@ import { ArticleListComponent } from './article-list/article-list.component';
 import { ArticleTagListComponent } from './article-tag-list/article-tag-list.component';
 import { ArticleTagItemComponent } from './article-tag-item/article-tag-item.component';
 import { RouterModule } from '../../../node_modules/@angular/router';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   imports: [
@@ -12,8 +13,8 @@ import { RouterModule } from '../../../node_modules/@angular/router';
     RouterModule
   ],
   exports: [
-    ArticleItemComponent, ArticleListComponent, ArticleTagListComponent, ArticleTagItemComponent
+    ArticleItemComponent, ArticleListComponent, ArticleTagListComponent, ArticleTagItemComponent, PaginationComponent
   ],
-  declarations: [ArticleItemComponent, ArticleListComponent, ArticleTagListComponent, ArticleTagItemComponent]
+  declarations: [ArticleItemComponent, ArticleListComponent, ArticleTagListComponent, ArticleTagItemComponent, PaginationComponent]
 })
 export class SharedModule { }

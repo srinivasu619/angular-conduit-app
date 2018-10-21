@@ -12,6 +12,7 @@ export class TagfeedComponent implements OnInit {
   isLoading: boolean;
   tag: string;
   tagArticles;
+  noOfArticles;
 
   constructor(private route: ActivatedRoute, private feedService: FeedService) {
   }
@@ -20,16 +21,17 @@ export class TagfeedComponent implements OnInit {
     this.route.queryParams.subscribe(
       (params) => {
         this.tag = params.tag;
-        this.getTagArticles();
+        this.getTagArticles(0);
       }
     );
   }
 
-  getTagArticles() {
+  getTagArticles(offset) {
     this.isLoading = true;
-    this.feedService.getTagFeed(this.tag).subscribe(
+    this.feedService.getTagFeed(this.tag, offset).subscribe(
       (data: any) => {
         this.tagArticles = data.articles;
+        this.noOfArticles = data.articlesCount;
       },
       (err) => {
         console.log(err);
@@ -39,6 +41,10 @@ export class TagfeedComponent implements OnInit {
         console.log('TAG FEED FETCHED');
       }
     );
+  }
+
+  selected(pageNumber) {
+    this.getTagArticles(pageNumber);
   }
 
 }

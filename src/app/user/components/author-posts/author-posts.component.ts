@@ -12,6 +12,7 @@ export class AuthorPostsComponent implements OnInit {
   author: string;
   authorPosts = [];
   isLoading: boolean;
+  noOfArticles;
 
   constructor(private feedService: FeedService, private activatedRoute: ActivatedRoute) {
   }
@@ -19,16 +20,17 @@ export class AuthorPostsComponent implements OnInit {
     this.activatedRoute.parent.paramMap.subscribe(
       (params) => {
         this.author = params.get('username');
-        this.getAuthorPosts();
+        this.getAuthorPosts(0);
       }
     );
   }
 
-  getAuthorPosts() {
+  getAuthorPosts(offset) {
     this.isLoading = true;
-    this.feedService.getAuthorArticles(this.author).subscribe(
+    this.feedService.getAuthorArticles(this.author, offset).subscribe(
       (data: any) => {
         this.authorPosts = data.articles;
+        this.noOfArticles = data.articlesCount;
       },
       (err) => {
         console.log(err);
@@ -40,4 +42,8 @@ export class AuthorPostsComponent implements OnInit {
     );
   }
 
+  selected(pageNumber) {
+    // console.log('GLOBAL FEED: ' + pageNumber);
+    this.getAuthorPosts(pageNumber);
+  }
 }

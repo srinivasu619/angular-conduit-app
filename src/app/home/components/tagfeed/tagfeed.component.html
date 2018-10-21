@@ -10,4 +10,5 @@
 
 <ng-template #articles>
   <app-article-list [articles]="tagArticles"></app-article-list>
+  <app-pagination [totalItems] = "noOfArticles" (pageSeleted) = "selected($event)"></app-pagination>
 </ng-template>
