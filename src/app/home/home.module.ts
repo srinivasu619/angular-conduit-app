@@ -6,6 +6,7 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { GlobalfeedComponent } from './components/globalfeed/globalfeed.component';
 import { UserfeedComponent } from './components/userfeed/userfeed.component';
 import { SharedModule } from '../shared/shared.module';
+import { TagfeedComponent } from './components/tagfeed/tagfeed.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { SharedModule } from '../shared/shared.module';
     HomeRoutingModule,
     SharedModule
   ],
-  declarations: [HomepageComponent, GlobalfeedComponent, UserfeedComponent]
+  declarations: [HomepageComponent, GlobalfeedComponent, UserfeedComponent, TagfeedComponent]
 })
 export class HomeModule { }

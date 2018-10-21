@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { GlobalfeedComponent } from './components/globalfeed/globalfeed.component';
 import { UserfeedComponent } from './components/userfeed/userfeed.component';
+import { TagfeedComponent } from './components/tagfeed/tagfeed.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'yourfeed',
         component: UserfeedComponent
+      },
+      {
+        path: 'tagfeed',
+        component: TagfeedComponent
       }
     ]
   }

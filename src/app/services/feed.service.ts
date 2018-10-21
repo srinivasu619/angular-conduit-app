@@ -43,4 +43,16 @@ export class FeedService {
     }
     return this.httpClient.get(`${ this.apiUrl }/articles/?favorited=${username}&limit=10`);
   }
+
+  getTagFeed(tag) {
+    if (this.authService.isLoggedIn()) {
+      const headers = this.setAuthoriztionHeaders();
+      return this.httpClient.get(`${ this.apiUrl }/articles/?tag=${ tag }&limit=10`, {headers: headers});
+    }
+    return this.httpClient.get(`${ this.apiUrl }/articles/?tag=${ tag }&limit=10`);
+  }
+
+  getFamousTags() {
+    return this.httpClient.get(`${ this.apiUrl }/tags`);
+  }
 }
