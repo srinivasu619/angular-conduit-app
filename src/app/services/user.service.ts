@@ -26,4 +26,14 @@ export class UserService {
     const headers = this.setAuthoriztionHeaders();
     return this.httpClient.delete(`${this.apiUrl}/profiles/${username}/follow`, { headers: headers });
   }
+
+  getUser() {
+    const headers = this.setAuthoriztionHeaders();
+    return this.httpClient.get(`${this.apiUrl}/user`, { headers: headers });
+  }
+
+  editUser(user) {
+    const headers = this.setAuthoriztionHeaders();
+    return this.httpClient.put(`${this.apiUrl}/user`, user, { headers: headers });
+  }
 }

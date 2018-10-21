@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProfilepageComponent } from './pages/profilepage/profilepage.component';
 import { AuthorPostsComponent } from './components/author-posts/author-posts.component';
 import { AuthorFavPostsComponent } from './components/author-fav-posts/author-fav-posts.component';
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
+import { AuthGuard } from '../gaurds/auth.guard';
 
 const routes: Routes = [
   {
@@ -23,6 +25,11 @@ const routes: Routes = [
         component: AuthorFavPostsComponent
       }
     ]
+  },
+  {
+    path: 'user/settings',
+    component: EditProfileComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

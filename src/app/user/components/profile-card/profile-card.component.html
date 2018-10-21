@@ -13,7 +13,7 @@
     <div class="authorBio">
       {{ author.bio || 'No Bio Provided'}}
     </div>
-    <button *ngIf="isLoggedIn && author.username === currentUser;else userActions" class="grayBack">Edit Profile</button>
+    <button *ngIf="isLoggedIn && author.username === currentUser;else userActions" class="grayBack" (click) = "editProfile()">Edit Profile</button>
   </div>
 </ng-template>
 

@@ -82,4 +82,8 @@ export class ProfileCardComponent implements OnInit, OnChanges {
       }
     );
   }
+
+  editProfile() {
+    this.router.navigate(['/user/settings']);
+  }
 }
