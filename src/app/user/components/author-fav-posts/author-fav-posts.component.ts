@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedService } from '../../../services/feed.service';
 import { ActivatedRoute } from '@angular/router';
+import { Article } from '../../../interfaces/Article';
 
 @Component({
   selector: 'app-author-fav-posts',
@@ -10,9 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 export class AuthorFavPostsComponent implements OnInit {
 
   author: string;
-  authorFavPosts = [];
+  authorFavPosts: Article[] = [];
   isLoading: boolean;
-  noOfArticles;
+  noOfArticles: number;
 
   constructor(private feedService: FeedService, private activatedRoute: ActivatedRoute) {
   }
@@ -29,7 +30,7 @@ export class AuthorFavPostsComponent implements OnInit {
   getAuthorFavPosts(offset) {
     this.isLoading = true;
     this.feedService.getAuthorFavArticles(this.author, offset).subscribe(
-      (data: any) => {
+      (data: {articles: Article[], articlesCount: number}) => {
         this.authorFavPosts = data.articles;
         this.noOfArticles = data.articlesCount;
       },

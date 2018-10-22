@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { CommentsService } from '../../../services/comments.service';
+import { Comment } from '../../../interfaces/Comment';
 
 @Component({
   selector: 'app-comment-item',
@@ -9,7 +10,7 @@ import { CommentsService } from '../../../services/comments.service';
 })
 export class CommentItemComponent implements OnInit {
 
-  @Input() comment;
+  @Input() comment: Comment;
   constructor(private authService: AuthService, private commentsService: CommentsService) { }
 
   ngOnInit() {

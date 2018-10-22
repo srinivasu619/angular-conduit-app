@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedService } from '../../../services/feed.service';
+import { Article } from '../../../interfaces/Article';
 
 @Component({
   selector: 'app-globalfeed',
@@ -8,9 +9,9 @@ import { FeedService } from '../../../services/feed.service';
 })
 export class GlobalfeedComponent implements OnInit {
 
-  globalArticles = [];
+  globalArticles: Article[] = [];
   isLoading: boolean;
-  noOfArticles;
+  noOfArticles: number;
 
   constructor(private feedService: FeedService) { }
 
@@ -21,7 +22,7 @@ export class GlobalfeedComponent implements OnInit {
   getGlobalArticles(offset) {
     this.isLoading = true;
     this.feedService.getGlobalFeed(offset).subscribe(
-      (data: any) => {
+      (data: { articles: Article[], articlesCount: number}) => {
         this.globalArticles = data.articles;
         this.noOfArticles = data.articlesCount;
       },

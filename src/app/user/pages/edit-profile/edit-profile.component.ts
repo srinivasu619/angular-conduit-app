@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import prettifyError from '../../../util/errorHandler';
+import { User } from '../../../interfaces/User';
 
 @Component({
   selector: 'app-edit-profile',
@@ -12,7 +13,7 @@ import prettifyError from '../../../util/errorHandler';
 })
 export class EditProfileComponent implements OnInit {
 
-  user;
+  user: User;
   userForm: FormGroup;
   errors = [];
   // imgPattern = `(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg)`;
@@ -30,7 +31,7 @@ export class EditProfileComponent implements OnInit {
   getProfile() {
     this.isLoading = true;
     this.userService.getUser().subscribe(
-      (data: any) => {
+      (data: {user: User}) => {
         this.user = data.user;
         this.createForm();
       },
@@ -57,7 +58,7 @@ export class EditProfileComponent implements OnInit {
 
   handleForm(userFormValue) {
     this.userService.editUser({user: userFormValue}).subscribe(
-      (data: any) => {
+      (data: {user: User}) => {
         console.log(data.user);
         this.authService.setUser(data.user);
         this.router.navigate(['/profile', data.user.username]);

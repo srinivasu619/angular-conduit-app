@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedService } from '../../../services/feed.service';
+import { Article } from '../../../interfaces/Article';
 
 @Component({
   selector: 'app-userfeed',
@@ -8,9 +9,9 @@ import { FeedService } from '../../../services/feed.service';
 })
 export class UserfeedComponent implements OnInit {
 
-  userArticles = [];
+  userArticles: Article[] = [];
   isLoading: boolean;
-  noOfArticles;
+  noOfArticles: number;
   constructor(private feedService: FeedService) { }
 
   ngOnInit() {
@@ -20,7 +21,7 @@ export class UserfeedComponent implements OnInit {
   getUserArticles(offset) {
     this.isLoading = true;
     this.feedService.getUserFeed(offset).subscribe(
-      (data: any) => {
+      (data: { articles: Article[], articlesCount: number}) => {
         this.userArticles = data.articles;
         this.noOfArticles = data.articlesCount;
       },

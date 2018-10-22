@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommentsService } from '../../../services/comments.service';
 import { AuthService } from '../../../services/auth.service';
+import { Comment } from '../../../interfaces/Comment';
 
 @Component({
   selector: 'app-comments-container',
@@ -9,8 +10,8 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class CommentsContainerComponent implements OnInit {
 
-  @Input() slug;
-  comments = [];
+  @Input() slug: string;
+  comments: Comment[] = [];
   constructor(private commentsService: CommentsService, private authService: AuthService) {
     this.commentsService.deleteEvent.subscribe(
       (commentId) => {
@@ -26,7 +27,7 @@ export class CommentsContainerComponent implements OnInit {
 
   getArticleComments() {
     this.commentsService.getArticleComments(this.slug).subscribe(
-      (data: any) => {
+      (data: {comments: Comment[]}) => {
         this.comments = data.comments;
         console.log(this.comments);
       },
@@ -53,7 +54,7 @@ export class CommentsContainerComponent implements OnInit {
         body: commentValue
       };
       this.commentsService.postArticleComment(this.slug, {comment: comment}).subscribe(
-        (data: any) => {
+        (data: {comment: Comment}) => {
           this.comments.unshift(data.comment);
         },
         (err) => {

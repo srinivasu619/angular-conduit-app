@@ -3,6 +3,7 @@ import { ProfileService } from '../../../services/profile.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '../../../../../node_modules/@angular/router';
 import { UserService } from '../../../services/user.service';
+import { Profile } from '../../../interfaces/Profile';
 
 @Component({
   selector: 'app-profile-card',
@@ -12,7 +13,7 @@ import { UserService } from '../../../services/user.service';
 export class ProfileCardComponent implements OnInit, OnChanges {
 
   @Input() username;
-  author;
+  author: Profile;
   isLoading: boolean;
   constructor(private profileService: ProfileService, private authService: AuthService, private userService: UserService,
     private router: Router) { }
@@ -36,7 +37,7 @@ export class ProfileCardComponent implements OnInit, OnChanges {
   getAuthor() {
     this.isLoading = true;
     this.profileService.getAuthorProfile(this.username).subscribe(
-      (data: any) => {
+      (data: {profile: Profile}) => {
         this.author = data.profile;
       },
       (err) => {
@@ -55,7 +56,7 @@ export class ProfileCardComponent implements OnInit, OnChanges {
       return;
     }
     this.userService.followUser(this.author.username).subscribe(
-      (data: any) => {
+      (data: {profile: Profile}) => {
         this.author = data.profile;
       },
       (err) => {
@@ -72,7 +73,7 @@ export class ProfileCardComponent implements OnInit, OnChanges {
       return;
     }
     this.userService.unfollowUser(this.author.username).subscribe(
-      (data: any) => {
+      (data: {profile: Profile}) => {
         this.author = data.profile;
       },
       (err) => {

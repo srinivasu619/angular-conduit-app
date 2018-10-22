@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { FeedService } from '../../../services/feed.service';
 import { ActivatedRoute } from '@angular/router';
+import { Article } from '../../../interfaces/Article';
 
 @Component({
   selector: 'app-author-posts',
@@ -10,9 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 export class AuthorPostsComponent implements OnInit {
 
   author: string;
-  authorPosts = [];
+  authorPosts: Article[] = [];
   isLoading: boolean;
-  noOfArticles;
+  noOfArticles: number;
 
   constructor(private feedService: FeedService, private activatedRoute: ActivatedRoute) {
   }
@@ -28,7 +29,7 @@ export class AuthorPostsComponent implements OnInit {
   getAuthorPosts(offset) {
     this.isLoading = true;
     this.feedService.getAuthorArticles(this.author, offset).subscribe(
-      (data: any) => {
+      (data: {articles: Article[], articlesCount: number}) => {
         this.authorPosts = data.articles;
         this.noOfArticles = data.articlesCount;
       },

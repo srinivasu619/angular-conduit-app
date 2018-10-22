@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../../../services/article.service';
 import { ActivatedRoute } from '../../../../../node_modules/@angular/router';
+import { Article } from '../../../interfaces/Article';
 
 @Component({
   selector: 'app-edit-article',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '../../../../../node_modules/@angular/router';
 })
 export class EditArticleComponent implements OnInit {
 
-  article;
+  article: Article;
   articleSlug: string;
   isLoading: boolean;
 
@@ -24,7 +25,7 @@ export class EditArticleComponent implements OnInit {
   getArticle() {
     this.isLoading = true;
     this.articleService.getArticleBySlug(this.articleSlug).subscribe(
-      (data: any) => {
+      (data: {article: Article}) => {
         this.article = data.article;
       },
       (err) => {

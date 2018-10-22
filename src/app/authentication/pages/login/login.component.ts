@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from 'node_modules/@angular/router';
 import prettifyError from '../../../util/errorHandler';
+import { User } from '../../../interfaces/User';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   handleForm(userCredentianls) {
     this.authService.loginUser({ user: userCredentianls }).subscribe(
-      (data: any) => {
+      (data: {user: User}) => {
         this.authService.setUser(data.user);
         this.router.navigate(['/home/yourfeed']);
       },

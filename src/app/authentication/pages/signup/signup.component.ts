@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import prettifyError from '../../../util/errorHandler';
+import { User } from '../../../interfaces/User';
 
 @Component({
   selector: 'app-signup',
@@ -29,7 +30,7 @@ export class SignupComponent implements OnInit {
 
   handleForm(userCredentianls) {
     this.authService.signUpUser({ user: userCredentianls }).subscribe(
-      (data: any) => {
+      (data: {user: User}) => {
         this.authService.setUser(data.user);
         this.router.navigate(['/home/yourfeed']);
       },

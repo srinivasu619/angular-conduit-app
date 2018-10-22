@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ArticleTagListComponent implements OnInit {
 
-  @Input() articleTags;
+  @Input() articleTags: string[];
 
   constructor() {
     console.log('TAGS ' + this.articleTags);

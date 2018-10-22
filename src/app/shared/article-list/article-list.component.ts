@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Article } from '../../interfaces/Article';
 
 @Component({
   selector: 'app-article-list',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./article-list.component.css']
 })
 export class ArticleListComponent implements OnInit {
-  @Input() articles;
+  @Input() articles: Article[];
   constructor() { }
 
   ngOnInit() {

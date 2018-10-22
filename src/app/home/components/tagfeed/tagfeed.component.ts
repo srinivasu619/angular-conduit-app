@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '../../../../../node_modules/@angular/router';
 import { FeedService } from '../../../services/feed.service';
+import { Article } from '../../../interfaces/Article';
 
 @Component({
   selector: 'app-tagfeed',
@@ -11,8 +12,8 @@ export class TagfeedComponent implements OnInit {
 
   isLoading: boolean;
   tag: string;
-  tagArticles;
-  noOfArticles;
+  tagArticles: Article[];
+  noOfArticles: number;
 
   constructor(private route: ActivatedRoute, private feedService: FeedService) {
   }
@@ -29,7 +30,7 @@ export class TagfeedComponent implements OnInit {
   getTagArticles(offset) {
     this.isLoading = true;
     this.feedService.getTagFeed(this.tag, offset).subscribe(
-      (data: any) => {
+      (data: { articles: Article[], articlesCount: number}) => {
         this.tagArticles = data.articles;
         this.noOfArticles = data.articlesCount;
       },

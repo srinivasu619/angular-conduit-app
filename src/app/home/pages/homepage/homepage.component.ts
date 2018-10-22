@@ -11,7 +11,7 @@ import { FeedService } from '../../../services/feed.service';
 export class HomepageComponent implements OnInit {
 
   tagsLoading: boolean;
-  tags = [];
+  tags: string[] = [];
   constructor(private authService: AuthService, private router: Router, private feedService: FeedService) { }
 
   ngOnInit() {
@@ -25,7 +25,7 @@ export class HomepageComponent implements OnInit {
   getTags() {
     this.tagsLoading = true;
     this.feedService.getFamousTags().subscribe(
-      (data: any) => {
+      (data: {tags: string[]}) => {
         this.tags = data.tags;
       },
       (err) => {

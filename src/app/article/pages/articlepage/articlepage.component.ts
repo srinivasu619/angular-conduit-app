@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from '../../../services/article.service';
 import { AuthService } from '../../../services/auth.service';
 import { UserService } from '../../../services/user.service';
+import { Article } from '../../../interfaces/Article';
+import { Profile } from '../../../interfaces/Profile';
 
 @Component({
   selector: 'app-articlepage',
@@ -12,7 +14,7 @@ import { UserService } from '../../../services/user.service';
 export class ArticlepageComponent implements OnInit {
 
   articleSlug: string;
-  article;
+  article: Article;
   isLoading: boolean;
   constructor(private activatedRoute: ActivatedRoute,
               private articleService: ArticleService,
@@ -74,7 +76,7 @@ export class ArticlepageComponent implements OnInit {
       return;
     }
     this.articleService.favoriteAnArticle(this.article.slug).subscribe(
-      (data: any) => { this.article = data.article; },
+      (data: {article: Article}) => { this.article = data.article; },
       (err) => { console.log(err); },
       () => { console.log('completed'); }
     );
@@ -86,7 +88,7 @@ export class ArticlepageComponent implements OnInit {
       return;
     }
     this.articleService.unfavoriteAnArticle(this.article.slug).subscribe(
-      (data: any) => { this.article = data.article; },
+      (data: {article: Article}) => { this.article = data.article; },
       (err) => { console.log(err); },
       () => { console.log('completed'); }
     );
@@ -98,7 +100,7 @@ export class ArticlepageComponent implements OnInit {
       return;
     }
     this.userService.followUser(this.article.author.username).subscribe(
-      (data: any) => {
+      (data: {profile: Profile}) => {
         this.article.author = data.profile;
       },
       (err) => {
@@ -115,7 +117,7 @@ export class ArticlepageComponent implements OnInit {
       return;
     }
     this.userService.unfollowUser(this.article.author.username).subscribe(
-      (data: any) => {
+      (data: {profile: Profile}) => {
         this.article.author = data.profile;
       },
       (err) => {
