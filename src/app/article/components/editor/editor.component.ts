@@ -73,7 +73,7 @@ export class EditorComponent implements OnInit {
         }
       },
       () => {
-        console.log('POSTED COMPLETE');
+        // console.log('POSTED COMPLETE');
       }
     );
   }

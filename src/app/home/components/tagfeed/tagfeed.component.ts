@@ -38,7 +38,7 @@ export class TagfeedComponent implements OnInit {
       },
       () => {
         this.isLoading = false;
-        console.log('TAG FEED FETCHED');
+        // console.log('TAG FEED FETCHED');
       }
     );
   }

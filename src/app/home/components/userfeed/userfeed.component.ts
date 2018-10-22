@@ -29,7 +29,7 @@ export class UserfeedComponent implements OnInit {
       },
       () => {
         this.isLoading = false;
-        console.log('USER ARTICLES FETCH COMPLETED.');
+        // console.log('USER ARTICLES FETCH COMPLETED.');
       }
     );
   }

@@ -30,7 +30,7 @@ export class GlobalfeedComponent implements OnInit {
       },
       () => {
         this.isLoading = false;
-        console.log('GLOBAL FEED FETCHED');
+        // console.log('GLOBAL FEED FETCHED');
       }
     );
   }

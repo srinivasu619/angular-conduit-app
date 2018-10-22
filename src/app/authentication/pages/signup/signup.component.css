@@ -61,3 +61,7 @@ form>input[type="submit"] {
 .alert-danger {
   color: #c0392b;
 }
+
+input[type="submit"]:disabled {
+  background: #dddddd;
+}

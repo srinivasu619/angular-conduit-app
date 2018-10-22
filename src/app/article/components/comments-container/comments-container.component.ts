@@ -34,7 +34,7 @@ export class CommentsContainerComponent implements OnInit {
         console.log(err);
       },
       () => {
-        console.log('COMPLETED');
+        // console.log('COMPLETED');
       }
     );
   }
@@ -60,7 +60,7 @@ export class CommentsContainerComponent implements OnInit {
           console.log(err);
         },
         () => {
-          console.log('new comment Added');
+          // console.log('new comment Added');
         }
       );
     }
@@ -75,7 +75,7 @@ export class CommentsContainerComponent implements OnInit {
         console.log(err);
       },
       () => {
-        console.log('DELETED SUCCESSFULLY');
+        // console.log('DELETED SUCCESSFULLY');
       }
     );
   }

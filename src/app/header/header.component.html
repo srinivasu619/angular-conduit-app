@@ -32,6 +32,11 @@
           New Article
         </div>
       </a>
+      <a [routerLink]="['/user/settings']">
+          <div class="menuItem">
+            ProfileSettings
+          </div>
+        </a>
       <a [routerLink]="['/profile',currentUser]">
         <div class="menuItem">
           {{ currentUser }}

@@ -33,7 +33,7 @@ export class HomepageComponent implements OnInit {
       },
       () => {
         this.tagsLoading = false;
-        console.log('COMPLETED TAGS');
+        // console.log('COMPLETED TAGS');
       }
     );
   }

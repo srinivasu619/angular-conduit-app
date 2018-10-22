@@ -4,6 +4,7 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { GlobalfeedComponent } from './components/globalfeed/globalfeed.component';
 import { UserfeedComponent } from './components/userfeed/userfeed.component';
 import { TagfeedComponent } from './components/tagfeed/tagfeed.component';
+import { AuthGuard } from '../gaurds/auth.guard';
 
 const routes: Routes = [
   {
@@ -26,7 +27,8 @@ const routes: Routes = [
       },
       {
         path: 'yourfeed',
-        component: UserfeedComponent
+        component: UserfeedComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'tagfeed',

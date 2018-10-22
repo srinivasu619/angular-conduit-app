@@ -37,7 +37,7 @@ export class ArticlepageComponent implements OnInit {
       },
       () => {
         this.isLoading = false;
-        console.log('ARTICLE FETCH COMPLETED');
+        // console.log('ARTICLE FETCH COMPLETED');
       }
     );
   }
