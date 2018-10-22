@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import { ArticleService } from '../../../services/article.service';
 import { Router } from '@angular/router';
+import prettifyError from '../../../util/errorHandler';
 
 @Component({
   selector: 'app-editor',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class EditorComponent implements OnInit {
 
   @Input() article?: any;
+  errors = [];
   editFlag = false;
   title: string;
   description: string;
@@ -58,7 +60,17 @@ export class EditorComponent implements OnInit {
         this.router.navigate(['/article', data.article.slug]);
       },
       (err) => {
-        console.log(err);
+        const errorMsg = err.error.errors;
+        const statusCode = err.status;
+        if (statusCode === 422) {
+          this.errors = prettifyError(errorMsg);
+        } else if (statusCode === 404) {
+          console.log(`404 : Not Found`);
+        } else if (statusCode === 401) {
+          console.log(`401 : Unauthorized Access`);
+        } else if (statusCode === 403) {
+          console.log(`403 : Forbidden Access`);
+        }
       },
       () => {
         console.log('POSTED COMPLETE');

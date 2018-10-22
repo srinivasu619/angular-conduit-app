@@ -50,3 +50,25 @@ button {
   background: darkgray;
   color: white;
 }
+
+.errorContainer {
+  padding: 12px 0;
+  color: #c0392b;
+  font-weight: bolder;
+}
+.errorContainer > h5 {
+  background: #c0392b;
+  color: white;
+  padding: 4px 8px;
+  display: inline-block;
+  border-radius: 1.2em;
+}
+.errorContainer > ul {
+  list-style: none;
+  font-size: 12px;
+}
+.errorContainer > ul >li {
+  padding: 4px 0;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+}

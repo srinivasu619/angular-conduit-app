@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
+import prettifyError from '../../../util/errorHandler';
 
 @Component({
   selector: 'app-edit-profile',
@@ -12,9 +14,14 @@ export class EditProfileComponent implements OnInit {
 
   user;
   userForm: FormGroup;
+  errors = [];
   // imgPattern = `(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg)`;
   isLoading;
-  constructor(private userService: UserService, private formBuilder: FormBuilder) { }
+  constructor(private userService: UserService,
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router) { }
+
 
   ngOnInit() {
     this.getProfile();
@@ -51,11 +58,22 @@ export class EditProfileComponent implements OnInit {
   handleForm(userFormValue) {
     this.userService.editUser({user: userFormValue}).subscribe(
       (data: any) => {
-        // this.user = data.user;
         console.log(data.user);
+        this.authService.setUser(data.user);
+        this.router.navigate(['/profile', data.user.username]);
       },
       (err) => {
-        console.log(err);
+        const errorMsg = err.error.errors;
+        const statusCode = err.status;
+        if (statusCode === 422) {
+          this.errors = prettifyError(errorMsg);
+        } else if (statusCode === 404) {
+          console.log(`404 : Not Found`);
+        } else if (statusCode === 401) {
+          console.log(`401 : Unauthorized Access`);
+        } else if (statusCode === 403) {
+          console.log(`403 : Forbidden Access`);
+        }
       },
       () => {
 
